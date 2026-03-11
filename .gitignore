@@ -1,0 +1,314 @@
+# Created by: Your FastAPI + Alembic + Pytest Project
+# https://gitignore.io
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+### FastAPI & Project Specific ###
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.bak
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Project specific
+# Если вы используете .env для хранения секретов
+.env
+.env.local
+.env.production
+
+# Alembic versions (но не игнорируйте сами миграции!)
+# Только если вы не хотите коммитить версии (обычно их коммитят)
+# alembic/versions/
+
+# Локальные конфиги
+alembic.ini
+config/local.yaml
+config/local.yml
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Static files (если собираете статику)
+/static/
+/media/
+
+# Secret files
+**/secrets.yaml
+**/secrets.yml
+service-account.json
+
+### Testing ###
+# pytest
+.pytest_cache/
+.cache/
+htmlcov/
+.coverage
+.coverage.*
+*.cover
+coverage.xml
+*.pytest_cache
+.tox/
+junit/
+test-results/
+
+# mypy
+.mypy_cache/
+
+### Virtual Environment ###
+# Virtualenv
+# Но если вы используете виртуальное окружение в папке проекта
+.venv/
+venv/
+.env/
+ENV/
+env/
+
+# pip
+pip-selfcheck.json
+
+### Logs ###
+# Логи приложения
+logs/
+*.log
+*.pid
+
+### PyCharm ###
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# AWS User-specific
+.idea/**/aws.xml
+
+# Generated files
+.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
+
+### VS Code ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for VS Code
+.history/
+
+### Docker ###
+.dockerignore
+Dockerfile-*
+*.dockerfile
+docker-compose.override.yml
+
+### Secrets ###
+# Ключи и сертификаты
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+### Alembic Specific ###
+# Не коммитим локальные версии alembic, если используем git flow
+# alembic/versions/ - но обычно их коммитят, так что закомментировано
+
+### Package managers ###
+# pip freeze > requirements.txt - обычно коммитим
+# requirements/
+# requirements/*.txt
+
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+### Custom Rules ###
+# Добавьте свои правила ниже
+# Например, если используете определенные инструменты или паттерны
+
+# Media files (если генерируете что-то)
+/media/
+/uploads/
+/downloads/
+
+# Database migrations backup
+alembic/versions/__pycache__/
+
+# Jupyter notebooks (если используете для экспериментов)
+*.ipynb
