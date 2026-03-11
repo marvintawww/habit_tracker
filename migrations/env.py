@@ -13,6 +13,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from src.config import DATABASE_URL
 from src.database.db import Base
 from src.models.user import User
+from src.models.jwt import JWTBlacklist
 
 
 config = context.config
@@ -65,11 +66,11 @@ async def run_migrations_online() -> None:
     async with connectable.connect() as connection:
         await connection.run_sync(
             lambda conn: context.configure(
-                connection=conn, target_metadata=target_metadata
+                connection=conn, target_metadata=target_metadata, render_as_batch=True
             )
         )
         await connection.run_sync(lambda conn: context.run_migrations())
-
+        await connection.commit()
     await connectable.dispose()
 
 
