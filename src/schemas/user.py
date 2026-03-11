@@ -11,7 +11,7 @@ class UserCreateDB(UserCreateData):
     pass
 
 
-class UserCreateResponse(BaseModel):
+class UserResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: int
     firstname: str
