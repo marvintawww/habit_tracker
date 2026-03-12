@@ -14,3 +14,15 @@ class AccountDeactivated(Exception):
     """Аккаунт удален"""
 
     pass
+
+
+class TokenIsBlacklisted(Exception):
+    """Токен находится в черном списке"""
+
+    pass
+
+
+class TokenTypeError(Exception):
+    """Неверный тип токена"""
+
+    pass
