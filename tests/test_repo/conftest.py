@@ -11,7 +11,9 @@ from src.schemas.jwt import BlacklistedTokenDB
 @pytest_asyncio.fixture
 async def created_user(db_session):
     command = UserCommandRepository(session=db_session)
-    user_data = UserCreateDB(login="alena", firstname="Alena", lastname="Gaichuk")
+    user_data = UserCreateDB(
+        login="alena", firstname="Alena", lastname="Gaichuk", hashed_password="hash"
+    )
     return await command.create(user_data)
 
 

@@ -5,10 +5,14 @@ class UserCreateData(BaseModel):
     login: str
     firstname: str
     lastname: str
+    password: str
 
 
-class UserCreateDB(UserCreateData):
-    pass
+class UserCreateDB(BaseModel):
+    login: str
+    firstname: str
+    lastname: str
+    hashed_password: str
 
 
 class UserResponse(BaseModel):

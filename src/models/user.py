@@ -12,6 +12,7 @@ class User(Base):
     login: Mapped[str] = mapped_column(unique=True)
     firstname: Mapped[str]
     lastname: Mapped[str]
+    hashed_password: Mapped[str]
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
     )

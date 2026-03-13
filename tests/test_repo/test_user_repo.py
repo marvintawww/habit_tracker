@@ -5,7 +5,9 @@ from src.schemas.user import UserCreateDB
 
 async def test_create_user_success(db_session):
     command = UserCommandRepository(session=db_session)
-    user_data = UserCreateDB(login="alena", firstname="Alena", lastname="Gaichuk")
+    user_data = UserCreateDB(
+        login="alena", firstname="Alena", lastname="Gaichuk", hashed_password="hash"
+    )
     user = await command.create(user_data)
 
     assert user.id == 1
@@ -16,7 +18,9 @@ async def test_create_user_success(db_session):
 
 async def test_create_user_duplicate_error(db_session, created_user):
     command = UserCommandRepository(session=db_session)
-    user_data = UserCreateDB(login="alena", firstname="Dima", lastname="Uvikov")
+    user_data = UserCreateDB(
+        login="alena", firstname="Dima", lastname="Uvikov", hashed_password="hash"
+    )
     with pytest.raises(Exception):
         await command.create(user_data)
 

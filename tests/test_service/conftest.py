@@ -8,7 +8,9 @@ from src.services.jwt import JWTService
 def user_service():
     query = AsyncMock()
     command = AsyncMock()
-    return UserService(query=query, command=command)
+    pwd_hasher = MagicMock()
+    pwd_hasher.hash_pw.return_value = "fake_hash"
+    return UserService(query=query, command=command, pwd_hasher=pwd_hasher)
 
 
 @pytest.fixture

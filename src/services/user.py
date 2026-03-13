@@ -8,9 +8,10 @@ from src.models.user import User
 
 
 class UserService:
-    def __init__(self, query, command):
+    def __init__(self, query, command, pwd_hasher):
         self._query = query
         self._command = command
+        self._pwd_hasher = pwd_hasher
 
     async def _check_user_not_exist_by_login(self, login: str) -> None:
         user = await self._query.get_by_login(login)
@@ -27,7 +28,11 @@ class UserService:
 
     async def create_user(self, data: UserCreateData) -> User:
         await self._check_user_not_exist_by_login(data.login)
+        hashed_password = self._pwd_hasher.hash_pw(data.password)
         user_data = UserCreateDB(
-            login=data.login, firstname=data.firstname, lastname=data.lastname
+            login=data.login,
+            firstname=data.firstname,
+            lastname=data.lastname,
+            hashed_password=hashed_password,
         )
         return await self._command.create(user_data)

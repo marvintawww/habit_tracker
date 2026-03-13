@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock
 
-from src.schemas.user import UserCreateDB
+from src.schemas.user import UserCreateDB, UserCreateData
 from src.exceptions.exception_handlers import (
     ItemAlreadyExist,
     ItemNotFound,
@@ -13,7 +13,7 @@ async def test_create_user_service_success(user_service):
     user_service._query.get_by_login.return_value = None
     user_service._command.create.return_value = MagicMock(id=1, login="dima")
     result = await user_service.create_user(
-        UserCreateDB(login="dima", firstname="a", lastname="b")
+        UserCreateData(login="dima", firstname="a", lastname="b", password="plain")
     )
 
     assert result.id == 1
@@ -26,7 +26,9 @@ async def test_create_user_service_duplicate_error(user_service):
 
     with pytest.raises(ItemAlreadyExist):
         await user_service.create_user(
-            UserCreateDB(login="alena", firstname="Alena", lastname="Gaichuk")
+            UserCreateData(
+                login="alena", firstname="Alena", lastname="Gaichuk", password="plain"
+            )
         )
 
     user_service._command.create.assert_not_called()
