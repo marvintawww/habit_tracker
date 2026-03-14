@@ -2,8 +2,9 @@ from src.exceptions.exception_handlers import (
     ItemAlreadyExist,
     ItemNotFound,
     AccountDeactivated,
+    AuthenticationError,
 )
-from src.schemas.user import UserCreateData, UserCreateDB
+from src.schemas.user import UserCreateData, UserCreateDB, UserLoginData
 from src.models.user import User
 
 
@@ -17,6 +18,14 @@ class UserService:
         user = await self._query.get_by_login(login)
         if user:
             raise ItemAlreadyExist
+
+    async def _get_user_by_login(self, login: str) -> User:
+        user = await self._query.get_by_login(login)
+        if not user:
+            raise ItemNotFound
+        if user.is_active is False:
+            raise AccountDeactivated
+        return user
 
     async def get_user_by_id(self, id: int) -> User:
         user = await self._query.get_by_id(id)
@@ -36,3 +45,8 @@ class UserService:
             hashed_password=hashed_password,
         )
         return await self._command.create(user_data)
+
+    async def authenticate(self, data: UserLoginData) -> None:
+        user = await self._get_user_by_login(data.login)
+        if not self._pwd_hasher.verify_pw(data.password, user.hashed_password):
+            raise AuthenticationError

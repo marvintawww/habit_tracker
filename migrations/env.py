@@ -66,7 +66,7 @@ async def run_migrations_online() -> None:
     async with connectable.connect() as connection:
         await connection.run_sync(
             lambda conn: context.configure(
-                connection=conn, target_metadata=target_metadata, render_as_batch=True
+                connection=conn, target_metadata=target_metadata
             )
         )
         await connection.run_sync(lambda conn: context.run_migrations())

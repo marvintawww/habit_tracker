@@ -20,3 +20,8 @@ class UserResponse(BaseModel):
     id: int
     firstname: str
     lastname: str
+
+
+class UserLoginData(BaseModel):
+    login: str
+    password: str

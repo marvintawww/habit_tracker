@@ -16,6 +16,12 @@ class AccountDeactivated(Exception):
     pass
 
 
+class AuthenticationError(Exception):
+    """Ошибка аутентификации"""
+
+    pass
+
+
 class TokenIsBlacklisted(Exception):
     """Токен находится в черном списке"""
 

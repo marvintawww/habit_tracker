@@ -19,3 +19,7 @@ async def test_check_token_not_in_blacklist_success(jwt_service):
     result = await jwt_service._check_token_not_in_blacklist(jti="jti")
 
     assert result is None
+
+
+async def test_refresh_token_pair_success(jwt_service):
+    pass
