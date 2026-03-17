@@ -4,7 +4,7 @@ from src.dependencies.user import get_user_service
 from src.dependencies.jwt import get_jwt_service
 from src.services.user import UserService
 from src.services.jwt import JWTService
-from src.schemas.jwt import TokenPairResponse
+from src.schemas.jwt import TokenPairResponse, RefreshTokenRequest
 from src.schemas.user import UserCreateData, UserLoginData
 
 router = APIRouter()
@@ -35,6 +35,28 @@ async def login(
     data: UserLoginData,
     user_service: UserService = Depends(get_user_service),
     jwt_service: JWTService = Depends(get_jwt_service),
-) -> TokenPairResponse:
+) -> dict:
     user = await user_service.authenticate(data)
     return jwt_service.create_token_pair(user.id)
+
+
+@router.post(
+    "/logout",
+    status_code=status.HTTP_200_OK,
+    summary="Выход из аккаунта"
+)
+async def logout(
+    data: RefreshTokenRequest, 
+    jwt_service: JWTService = Depends(get_jwt_service)
+) -> JWTService:
+    await jwt_service.logout(data)
+    return {"detail": "Успешный выход из аккаунта"}
+
+
+@router.post(
+    "/refresh",
+    status_code=status.HTTP_200_OK,
+    summary="Выход из аккаунта"
+)
+async def refresh(data: RefreshTokenRequest, jwt_service: JWTService = Depends(get_jwt_service)) -> dict:
+    pass
