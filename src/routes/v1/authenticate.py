@@ -40,14 +40,9 @@ async def login(
     return jwt_service.create_token_pair(user.id)
 
 
-@router.post(
-    "/logout",
-    status_code=status.HTTP_200_OK,
-    summary="Выход из аккаунта"
-)
+@router.post("/logout", status_code=status.HTTP_200_OK, summary="Выход из аккаунта")
 async def logout(
-    data: RefreshTokenRequest,
-    jwt_service: JWTService = Depends(get_jwt_service)
+    data: RefreshTokenRequest, jwt_service: JWTService = Depends(get_jwt_service)
 ) -> JWTService:
     await jwt_service.logout(data)
     return {"detail": "Успешный выход из аккаунта"}
@@ -57,11 +52,10 @@ async def logout(
     "/refresh",
     response_model=TokenPairResponse,
     status_code=status.HTTP_200_OK,
-    summary="Обновление пары токенов"
+    summary="Обновление пары токенов",
 )
 async def refresh(
-    data: RefreshTokenRequest,
-    jwt_service: JWTService = Depends(get_jwt_service)
+    data: RefreshTokenRequest, jwt_service: JWTService = Depends(get_jwt_service)
 ) -> TokenPairResponse:
     token_pair = await jwt_service.create_token_pair(data)
     return token_pair

@@ -9,3 +9,5 @@ pytest
 pytest_asyncio
 httpx
 alembic
+ruff
+black
