@@ -14,7 +14,7 @@ from src.config import DATABASE_URL
 from src.database.db import Base
 from src.models.user import User
 from src.models.jwt import JWTBlacklist
-
+from src.models.habit import Habit
 
 config = context.config
 config.set_main_option("sqlalchemy.url", DATABASE_URL)
